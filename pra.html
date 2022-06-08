@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>food-app</title>
+</head>
+<body>
+    <input type="search" name="" id="bollo" oninput="debouncing(louda,500)">
+    <br>
+    <div id="boll"></div>
+    <div id="bell"></div>
+</body>
+</html>
+<script>
+    // let url=`https://www.themealdb.com/api/json/v1/1/search.php?s=${val}`;
+    let id;
+    let bo=document.querySelector("#boll");
+    let bi=document.querySelector("#bell");
+   let louda=async()=>{
+    let inputvalue=document.querySelector("#bollo").value;
+    let givevalue=anotherfunction(inputvalue);
+    let okiwilltake=await givevalue;
+    appendinghere(okiwilltake)
+   }
+
+   let anotherfunction=async(pass)=>{
+    try {
+        let url=`https://www.themealdb.com/api/json/v1/1/search.php?s=${pass}`;
+        let boom=await fetch(url);
+        let goom=await boom.json();
+        console.log(goom.meals);
+        return goom.meals
+    } catch (error) {
+        console.log(error)
+    }
+   }
+
+   let appendinghere=(data)=>{
+    bo.innerHTML=null;
+    if(data==undefined){
+        return false;
+    }
+    data.forEach((ele,index)=> {
+        let create=document.createElement("div");
+        
+        let one=document.createElement("h2");
+        one.innerText=ele.strMeal;
+        one.addEventListener("click",function(){
+            myhello(ele)
+        })
+
+        create.append(one);
+
+        bo.append(create);
+    });
+   }
+   let debouncing=(praveen,ganesh)=>{
+    if(id){
+        clearTimeout(id);
+    }
+    id=setTimeout(() => {
+        praveen();
+    },ganesh);
+   }
+//    idMeal: "52977"
+// strArea: "Turkish"
+// strCategory: "Side"
+//    strMealThumb: "https://www.themealdb.com/images/media/meals/58oia61564916529.jpg"
+// strMeasure1: "1 cup "
+// strMeasure2: "1 large"
+// strMeasure3: "1 large"
+
+   let myhello=(ele)=>{
+    bo.innerHTML=null;
+    bi.innerHTML=null;
+    let cre=document.createElement("div");
+
+    let first=document.createElement("img");
+    first.setAttribute("src",ele.strMealThumb);
+
+    let second=document.createElement("h3");
+    second.innerText=ele.strArea;
+
+    let third=document.createElement("h3");
+    third.innerText=ele.strCategory;
+
+    let four=document.createElement("h3");
+    third.innerText=ele.idMeal;
+
+    cre.append(first,second,third,four);
+
+    bi.append(cre);
+
+   }
+</script>

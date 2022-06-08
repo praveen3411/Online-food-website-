@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup-page</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+   <div id="fifth"></div> 
+   <br>
+   <div id="hel">
+   <form action="" id="sin">
+    <input type="text" name="" id="sinone" placeholder="Enter-Your-Name">
+    <input type="email" name="" id="sintwo" placeholder="Enter-Your-E-Mail">
+    <input type="number" name="" id="sinthree" placeholder="Enter-Your-Number">
+    <input type="password" name="" id="sinfour" placeholder="Enter-Your-passsword">
+    <input type="submit" name="" id="sinfive">
+   </form>
+   </div>
+</body>
+</html>
+<script type="module">
+    import navbar from './components/navbar.js';
+    let shotfive=document.querySelector("#fifth");
+    shotfive.innerHTML=navbar();
+    
+    function fun(name,email,number,password){
+        this.name=name;
+        this.email=email;
+        this.number=number;
+        this.password=password;
+    }
+    let array=JSON.parse(localStorage.getItem("sigupdata"));
+    console.log(array)
+    let callme=()=>{
+        event.preventDefault();
+        let name=document.querySelector("#sinone").value;
+        let email=document.querySelector("#sintwo").value;
+        let number=document.querySelector("#sinthree").value;
+        let password=document.querySelector("#sinfour").value;
+        let output=new fun(name,email,number,password);
+        localStorage.setItem("sigupdata",JSON.stringify(output));
+        alert("Successfully Created Account");
+        alert("Go To login-page");
+        window.location.href="login.html";
+    }
+    document.querySelector("form").addEventListener("submit",callme);
+</script>

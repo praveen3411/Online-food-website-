@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food-app</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+    <div id="first"></div>
+    <div id="boom"></div>
+    <br>
+    <div id="bell"></div>
+</body>
+</html>
+<script type="module">
+    let array1=JSON.parse(localStorage.getItem("logindata"));
+    import navbar from './components/navbar.js';
+    let shotone=document.querySelector("#first");
+    shotone.innerHTML=navbar();
+    import {foodapp,appendone} from './scripts/fooditems.js';
+    let boomone=document.querySelector("#bell");
+    let response=foodapp(`https://www.themealdb.com/api/json/v1/1/search.php?s=`);
+    response.then((result) => {
+        appendone(result,boomone)
+    }).catch((err) => {
+        console.log(err)
+    });
+    
+</script>
+
+<!-- var fix=document.querySelector("#four");
+var array2=JSON.parse(localStorage.getItem("logindata"))||{};
+if(array2==null){
+    fix.innerHTML=`<h2><a href="signup.html">Signup</a></h2>
+                  <h2><a href="login.html">Login</a></h2>`
+}
+else{
+    fix.innerHTML=`<h2><a href="signup.html">Praveen</a></h2>
+        <h2><a href="cart.html">Cart</a></h2>`
+} -->

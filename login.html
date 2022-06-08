@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login-page</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+    <div id="fourth"></div>
+    <br>
+    <form action="" id="log">
+        <input type="email" name="" id="logone" placeholder="Enter-Email">
+        <input type="password" name="" id="logtwo" placeholder="Cureent-Password">
+        <input type="submit" name="" id="logthree">
+    </form>
+</body>
+</html>
+<script type="module">
+    import navbar from './components/navbar.js';
+    let shotfour=document.querySelector("#fourth");
+    shotfour.innerHTML=navbar();
+
+    let array=JSON.parse(localStorage.getItem("sigupdata"));
+    let array1=JSON.parse(localStorage.getItem("logindata"));
+    let logfun=()=>{
+        event.preventDefault();
+        let obj2={
+         logname:log.logone.value,
+         logpass:log.logtwo.value
+        }
+        if(array==null){
+            alert("😊 Please Create Account");
+        }
+        else if(array.email==obj2.logname && array.password==obj2.logpass){
+            alert("Login-successful");
+            localStorage.setItem("logindata",JSON.stringify(obj2));
+            window.location.href="index.html";
+        }
+        else{
+            alert("User Does'nt Exist");
+        }
+    }
+    document.querySelector("form").addEventListener("submit",logfun)
+</script>

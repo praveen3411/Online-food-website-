@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random-Resipies</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+    <div id="six"></div>
+    <br>
+    <div id="loly"></div>
+</body>
+</html>
+<script type="module">
+    import navbar from './components/navbar.js';
+    let cat=document.querySelector("#six");
+    let lol=document.querySelector("#loly");
+    cat.innerHTML=navbar();
+    import {randomone,appendinghere} from './scripts/random.js';
+    let responses=randomone(`https://www.themealdb.com/api/json/v1/1/random.php`);
+    responses.then((result) => {
+        appendinghere(result,lol);
+    }).catch((err) => {
+        console.log(err);
+    });
+</script>
